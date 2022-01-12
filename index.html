@@ -16,51 +16,52 @@ font-weight: 400;
 line-height: 1.5;      
 text-align: left;
 }
-
 ::-moz-selection {color:#000; background:#ff00ff;}
 ::selection {color:#000; background:#ff00ff;}
-
 a {color:#f0f;}
 .wrapper {margin:2em 1em 2em;}
 .section {border-left:#f0f solid 3px; margin:0px 0px 10em; padding:0px 2em 0px 1em;}
 .section:hover {color:#fff;}
-
 .section h3 {font-size:2em; margin:.5em 0px; font-weight:normal; text-transform: uppercase;}
 .section p {margin-bottom: 1em;}
 ul {margin-left:1em;}
-
 .box {overflow:hidden; height: 470px; margin-bottom:1em; width:100%; max-width:800px; position:relative;}
 .frame {background:#333; width:100%; max-width:800px; border:none; height:550px; position: absolute; top:-32px;}
+
+.modal-close {background-color:#000; cursor:pointer; color:#fff; margin:25px 40px 0px 0px; padding:5px 15px; border-radius:3px; position:fixed; right:0; top:0; z-index:4; cursor:pointer;}	
+.modal-bg {background-color:rgba(255,0,255,0.7); width:100%; height:100%; z-index:2; position:fixed; top:0px; left:0px;}	
+.modal-content {display:none; z-index:3; padding:70px 0px; position:fixed; width:100%; top:0px;}
+	.modal-content img {margin:0px auto; display:block; width:calc(100% - 20px); max-width:500px;}
 </style>
 </head>
 <body>
-    
+
 
 <div class="wrapper">
 	<div class="section">
         <h3>Hello</h3>
 		<p>Welcome to my website portfolio. View samples in frames: 
 			click '+' to zoom in / or '-' to zoom out / or pinch zoom on touch screen, click and drag '&#10021;' to pan view, reload browser window to reset view. 
-			Contact email: <a href="mailto:uxuijoel@gmail.com">uxuijoel@gmail.com</a></a></p>
+			Contact email: <a href="mailto:uxuijoel@gmail.com">uxuijoel@gmail.com</a></p>
 	</div>
     <div class="section">
         <h3>#01. lookbook</h3>
         <div class="box">
 			<iframe class="frame" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FD9bs7rCZ1YbZvLyl21DvT3%2F_Lookbook%3Fnode-id%3D157%253A59"></iframe>
 		</div>
-        <p>Developed interactive experience for company online store. My responsibilities and work process included:</p>
+        <p>Developed interactive experience for company online store, <a href="img/lookbook.gif" class="seeSample">See in action</a>. My responsibilities and work process included:</p>
         <ul>
             <li>Organizing meetings with (sales, marketing, qa, design) teams, where I outlined development solutions for project to follow art direction, brand guidelines, track sales conversion, functionality and compatibility across devices.</li>
             <li>Creating (wireframes, user flows, prototypes) detailing functionality I would later develop</li>
             <li>Optimizing graphic assets by converting into sprites, and video content by compressing with Adobe Media Encoder</li>
             <li>Web Development of project (html, css, javascript)</li>
             <li>utilzing coremetrics to track sales conversion rate / which project contributed to sales increase in segment</li>
-        </ul>
+		</ul>
     </div>
     <div class="section">
         <h3>#02. logos</h3>
 		<div class="box">
-		<iframe class="frame" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1bkjNxBbRrwCXV0DlBrPcy%2F_Logos%3Fnode-id%3D0%253A1"></iframe>
+			<iframe class="frame" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F1bkjNxBbRrwCXV0DlBrPcy%2F_Logos%3Fnode-id%3D0%253A1"></iframe>
 		</div>
         <p>These are logos I designed for clients. My work process included:</p>
         <ul>
@@ -75,7 +76,7 @@ ul {margin-left:1em;}
     <div class="section">
         <h3>#03. E-commerce</h3>
 		<div class="box">		
-		<iframe class="frame" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FsHSF7DRkqe9PljBKHByiFW%2F_Ecommerce%3Fnode-id%3D102%253A2"></iframe>
+			<iframe class="frame" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FsHSF7DRkqe9PljBKHByiFW%2F_Ecommerce%3Fnode-id%3D102%253A2"></iframe>
 		</div>
         <p>Designed online store brand for client. My responsibilities and work process included:</p>
         <ul>
@@ -90,8 +91,32 @@ ul {margin-left:1em;}
         </ul>
     </div>
 </div>
+	
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+(function(){
 
+	var $proj = $('.seeSample');
+	$proj.click(function(e){
+		var sampleImage = $(this).attr('href');
+		modal = '',
+		modal += '<div class="modal-close">x</div>';
+		modal += '<div class="modal-content">';
+		modal += '<img class="modal-img" src='+sampleImage+'>';	
+		modal += '</div>';
+		modal += '<div class="modal-bg"></div>';
+		$('body').append(modal);
+		$('.modal-content').show();
+		$('.modal-close').click(function(){
+			$('.modal-close, .modal-bg').remove();
+			$('.modal-content').remove();
+		});
+		e.preventDefault();
+	});
+
+}());
+</script>
 
 </body>
 </html>
